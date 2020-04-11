@@ -45,21 +45,8 @@ const useStyles = makeStyles((theme) => ({
       flexShrink: 0,
     },
   },
-  appBar: {
-    [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-  },
-
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
   },
   introductionContainer: {
     textAlign: "center",
@@ -103,7 +90,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    // padding: 15
   },
   aboutPageBody: {
     color: "#494c4e",
@@ -150,7 +136,6 @@ export default function App(props) {
   };
 
   const handleListItemClick = (divToFocus) => {
-    // document.getElementById('about-page').scrollIntoView()
     if (divToFocus.current) {
       divToFocus.current.scrollIntoView({
         behavior: "smooth",
