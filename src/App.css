@@ -1,6 +1,0 @@
-@media screen and (min-width: 960px) {
-  #background-container {
-    display: grid;
-    grid-template-columns: 30% 70%;
-  }
-}
