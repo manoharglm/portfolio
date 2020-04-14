@@ -9,10 +9,6 @@ const useStyles = makeStyles((theme) => ({
       padding: 0,
       overflowX: "hidden",
     },
-    backgroundContainer: {
-      display: "grid",
-      gridTemplateColumns: "30% 70%",
-    },
     background: {
       backgroundImage: `url(${Avatar})`,
       background: "white",
@@ -30,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
       width: drawerWidth,
+    },
+    drawerPaperMobile: {
+      width: 240,
     },
     introductionContainer: {
       textAlign: "center",
@@ -87,10 +86,12 @@ const useStyles = makeStyles((theme) => ({
       color: "inherit",
     },
     listItemText: {
+      color: "#494c4e",
       fontFamily: ["Libre Baskerville", "Roboto", "monaco", "sans-serif"].join(
         ","
       ),
-      fontWeight: 800,
+      fontWeight: "bold",
+      fontSize: "1.2em",
     },
   }));
 

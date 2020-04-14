@@ -18,6 +18,7 @@ import $ from "jquery";
 import useStyles from "./styles";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import './App.css';
 
 const socialUrl = {
   github: "https://github.com/manoharglm",
@@ -26,6 +27,8 @@ const socialUrl = {
   resume:
     "https://drive.google.com/file/d/1betag4FLZJ3AcuqCf1jFBpxJS8dwxT0F/view?usp=sharing",
 };
+
+const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
 
 export default function App(props) {
   const { container } = props;
@@ -42,6 +45,7 @@ export default function App(props) {
   };
 
   const handleListItemClick = (divToFocus) => {
+    isMobile() && handleDrawerToggle();
     scrollThere($(`#${divToFocus}`), 400);
   };
 
@@ -137,7 +141,10 @@ export default function App(props) {
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
-          <ListItemText classes={classes.listItemText} primary={"About"} />
+          <ListItemText
+            classes={{ primary: classes.listItemText }}
+            primary={"About"}
+          />
         </ListItem>
         <ListItem
           onClick={(_) => handleListItemClick("contactPage")}
@@ -147,7 +154,10 @@ export default function App(props) {
           <ListItemIcon>
             <ContactMailIcon />
           </ListItemIcon>
-          <ListItemText classes={classes.listItemText} primary={"Contact"} />
+          <ListItemText
+            classes={{ primary: classes.listItemText }}
+            primary={"Contact"}
+          />
         </ListItem>
         <ListItem
           onClick={(_) => handleIconClick("resume")}
@@ -157,7 +167,10 @@ export default function App(props) {
           <ListItemIcon>
             <DescriptionIcon />
           </ListItemIcon>
-          <ListItemText classes={classes.listItemText} primary={"Resume"} />
+          <ListItemText
+            classes={{ primary: classes.listItemText }}
+            primary={"Resume"}
+          />
         </ListItem>
       </List>
     </div>
@@ -176,7 +189,7 @@ export default function App(props) {
               open={mobileOpen}
               onClose={handleDrawerToggle}
               classes={{
-                paper: classes.drawerPaper,
+                paper: classes.drawerPaperMobile,
               }}
               ModalProps={{
                 keepMounted: true, // Better open performance on mobile.
@@ -197,12 +210,12 @@ export default function App(props) {
             </Drawer>
           </Hidden>
         </nav>
-        <div className={classes.backgroundContainer}>
+        <div id = {"background-container"} className={classes.backgroundContainer}>
           <MediaCard handleDrawerToggle={handleDrawerToggle} />
           <div>
             <div className={classes.background} id={"indexPage"}></div>
             <About />
-            <Contact/>
+            <Contact />
           </div>
         </div>
       </div>

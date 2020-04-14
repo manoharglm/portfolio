@@ -28,8 +28,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "right",
   },
   menuButton: {
+    position: "fixed",
     marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(2)/2,
+    marginLeft: theme.spacing(2) / 2,
     [theme.breakpoints.up("sm")]: {
       display: "none",
     },
@@ -50,12 +51,6 @@ export default function MediaCard(props) {
       >
         <MenuIcon />
       </IconButton>
-      <b className={classes.introduction}>Manohar</b>
-      <br />
-      <b className={classes.introduction}>Gunduboina</b>
-      <br />
-      <b className={classes.introduction}>Full Stack Developer</b>
-      <br />
     </div>
   );
 }

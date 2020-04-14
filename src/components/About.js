@@ -5,7 +5,7 @@ export default function About() {
   const classes = useStyles();
 
   return (
-    <div className={classes.aboutPage} id={"aboutPage"} >
+    <div className={classes.aboutPage} id={"aboutPage"}>
       <b className={classes.aboutPageBody}>Hi.</b>
       <br />
       <b className={classes.aboutPageBody}>
@@ -30,7 +30,9 @@ export default function About() {
         >
           React Native{" "}
         </a>
-        That means I can build you websites, Android and iOS applications
+      </b>
+      <b className={classes.aboutPageBody}>
+        I can build you websites, Android and iOS applications
       </b>
       <b className={classes.aboutPageBody}>Isn't that cool ?</b>
     </div>
