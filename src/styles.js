@@ -79,8 +79,8 @@ const useStyles = makeStyles((theme) => ({
         ","
       ),
       fontSize: "1.5em",
-      marginLeft: "25%",
-      marginRight: "25%",
+      marginLeft: "20%",
+      marginRight: "20%",
     },
     anchorTaag: {
       color: "inherit",

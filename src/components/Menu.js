@@ -7,26 +7,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     zIndex: 1,
   },
-  media: {
-    height: "90vh",
-    marginRight: 150,
-  },
-  introduction: {
-    color: "#494c4e",
-    fontFamily: ["Libre Baskerville", "Roboto", "monaco", "sans-serif"].join(
-      ","
-    ),
-    fontSize: "2em",
-    textAlign: "right",
-  },
-  tags: {
-    color: "white",
-    backgroundColor: "black",
-    fontFamily: ["Roboto", "monaco", "sans-serif"].join(","),
-    fontWeight: 800,
-    fontSize: 25,
-    textAlign: "right",
-  },
   menuButton: {
     position: "fixed",
     marginRight: theme.spacing(2),
@@ -37,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MediaCard(props) {
+export default function Menu(props) {
   const classes = useStyles();
 
   return (
@@ -51,6 +31,7 @@ export default function MediaCard(props) {
       >
         <MenuIcon />
       </IconButton>
+
     </div>
   );
 }

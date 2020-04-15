@@ -34,6 +34,7 @@ export default function About() {
       <b className={classes.aboutPageBody}>
         I can build you websites, Android and iOS applications
       </b>
+      <br/>
       <b className={classes.aboutPageBody}>Isn't that cool ?</b>
     </div>
   );

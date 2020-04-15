@@ -1,6 +1,15 @@
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 767px) {
   #background-container {
     display: grid;
     grid-template-columns: 30% 70%;
-  }
+  };
+}
+@media screen and (max-width: 767px) {
+  #indexPage{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+  };
+
 }

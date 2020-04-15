@@ -1,11 +1,8 @@
 import React from "react";
 import { useTheme } from "@material-ui/core/styles";
-import { Drawer, IconButton } from "@material-ui/core";
+import { Drawer } from "@material-ui/core";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import InstagramIcon from "@material-ui/icons/Instagram";
 import PersonIcon from "@material-ui/icons/Person";
 import DescriptionIcon from "@material-ui/icons/Description";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
@@ -13,12 +10,13 @@ import Hidden from "@material-ui/core/Hidden";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import MediaCard from "./MediaCard";
+import Menu from "./components/Menu";
 import $ from "jquery";
 import useStyles from "./styles";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import './App.css';
+import Title from "./components/Title";
+import "./App.css";
 
 const socialUrl = {
   github: "https://github.com/manoharglm",
@@ -28,24 +26,25 @@ const socialUrl = {
     "https://drive.google.com/file/d/1betag4FLZJ3AcuqCf1jFBpxJS8dwxT0F/view?usp=sharing",
 };
 
-const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
 
 export default function App(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobile, setMobile] = React.useState(window.matchMedia("(max-width: 767px)").matches);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
 
   const handleIconClick = (website) => {
     window.open(socialUrl[website], "_blank");
   };
 
   const handleListItemClick = (divToFocus) => {
-    isMobile() && handleDrawerToggle();
+    mobile && handleDrawerToggle();
     scrollThere($(`#${divToFocus}`), 400);
   };
 
@@ -54,6 +53,10 @@ export default function App(props) {
       .stop()
       .animate({ scrollTop: targetElement.offset().top }, speed, "swing");
   }
+
+  $(window).on('resize', function(){
+    window.matchMedia("(max-width: 767px)").matches ? !mobile && setMobile(true) : mobile && setMobile(false)
+  });
 
   $(window).on("mousewheel", function (e) {
     var div1y = $("#indexPage").offset().top,
@@ -101,36 +104,7 @@ export default function App(props) {
 
   const drawer = (
     <div>
-      <div className={classes.introductionContainer}>
-        <b className={classes.introduction}>Manohar</b>
-        <br />
-        <b className={classes.introduction}>Gunduboina</b>
-        <br />
-        <b className={classes.introductionCredential}>
-          MERN Stack & React Native Developer
-        </b>
-        <div className={classes.introductionIcons}>
-          <IconButton
-            aria-label="github"
-            onClick={(_) => handleIconClick("github")}
-          >
-            <GitHubIcon />
-          </IconButton>
-          <IconButton
-            aria-label="linkedin"
-            onClick={(_) => handleIconClick("linkedin")}
-          >
-            <LinkedInIcon />
-          </IconButton>
-          <IconButton
-            aria-label="instagram"
-            onClick={(_) => handleIconClick("instagram")}
-          >
-            <InstagramIcon />
-          </IconButton>
-        </div>
-      </div>
-
+      <Title display = {!mobile} handleIconClick={handleIconClick} />
       <Divider />
       <List>
         <ListItem
@@ -180,7 +154,6 @@ export default function App(props) {
     <div className={classes.root}>
       <div className={classes.root}>
         <nav className={classes.drawer} aria-label="mailbox folders">
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Hidden smUp implementation="css">
             <Drawer
               container={container}
@@ -192,7 +165,7 @@ export default function App(props) {
                 paper: classes.drawerPaperMobile,
               }}
               ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
+                keepMounted: true,
               }}
             >
               {drawer}
@@ -210,10 +183,16 @@ export default function App(props) {
             </Drawer>
           </Hidden>
         </nav>
-        <div id = {"background-container"} className={classes.backgroundContainer}>
-          <MediaCard handleDrawerToggle={handleDrawerToggle} />
+        <div
+          id={"background-container"}
+          className={classes.backgroundContainer}
+        >
+          <Menu handleDrawerToggle={handleDrawerToggle} />
           <div>
-            <div className={classes.background} id={"indexPage"}></div>
+            <div id={"indexPage"}>
+              <Title display = {mobile} handleIconClick={handleIconClick} />
+              <div id = {"background-mobile"} className={classes.background} ></div>
+            </div>
             <About />
             <Contact />
           </div>
