@@ -72,11 +72,9 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
       flexDirection: "column",
       textAlign: "center",
-
     },
     aboutPageContainer: {
       textAlign: "center",
-
     },
     aboutPageBody: {
       color: "#494c4e",
@@ -86,6 +84,8 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "1.5em",
       marginLeft: "20%",
       marginRight: "20%",
+      textAlign: "center",
+
     },
     anchorTaag: {
       color: "inherit",
