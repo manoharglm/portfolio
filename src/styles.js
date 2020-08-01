@@ -67,11 +67,16 @@ const useStyles = makeStyles((theme) => ({
     aboutPage: {
       width: "100%",
       height: "100vh",
-      textAlign: "center",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       flexDirection: "column",
+      textAlign: "center",
+
+    },
+    aboutPageContainer: {
+      textAlign: "center",
+
     },
     aboutPageBody: {
       color: "#494c4e",

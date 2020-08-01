@@ -17,30 +17,41 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Title from "./components/Title";
 import "./App.css";
-
-const socialUrl = {
-  github: "https://github.com/manoharglm",
-  linkedin: "https://www.linkedin.com/in/manoharglm/",
-  instagram: "https://www.instagram.com/the_duude_abides/",
-  resume:
-    "https://drive.google.com/file/d/1betag4FLZJ3AcuqCf1jFBpxJS8dwxT0F/view?usp=sharing",
-};
-
+import axios from "axios";
+import Skeleton from 'react-loading-skeleton';
+ 
 
 export default function App(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [mobile, setMobile] = React.useState(window.matchMedia("(max-width: 767px)").matches);
+  const [mobile, setMobile] = React.useState(
+    window.matchMedia("(max-width: 767px)").matches
+  );
+  const [userData, setUserData] = React.useState([]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const saveUserData = () => {
+    return axios
+      .get("https://my-json-server.typicode.com/manoharglm/demo/db")
+      .then(function (response) {
+        return response;
+      })
+      .catch((error) => console.log(error));
+  };
+
+  React.useEffect(() => {
+    saveUserData().then((res) => {
+      setUserData(res.data);
+    });
+  }, [userData?.length]);
 
   const handleIconClick = (website) => {
-    window.open(socialUrl[website], "_blank");
+    window.open(userData.links[website], "_blank");
   };
 
   const handleListItemClick = (divToFocus) => {
@@ -54,8 +65,10 @@ export default function App(props) {
       .animate({ scrollTop: targetElement.offset().top }, speed, "swing");
   }
 
-  $(window).on('resize', function(){
-    window.matchMedia("(max-width: 767px)").matches ? !mobile && setMobile(true) : mobile && setMobile(false)
+  $(window).on("resize", function () {
+    window.matchMedia("(max-width: 767px)").matches
+      ? !mobile && setMobile(true)
+      : mobile && setMobile(false);
   });
 
   $(window).on("mousewheel", function (e) {
@@ -104,7 +117,11 @@ export default function App(props) {
 
   const drawer = (
     <div>
-      <Title display = {!mobile} handleIconClick={handleIconClick} />
+      <Title
+        profile={userData.profile}
+        display={!mobile}
+        handleIconClick={handleIconClick}
+      />
       <Divider />
       <List>
         <ListItem
@@ -190,11 +207,14 @@ export default function App(props) {
           <Menu handleDrawerToggle={handleDrawerToggle} />
           <div>
             <div id={"indexPage"}>
-              <Title display = {mobile} handleIconClick={handleIconClick} />
-              <div id = {"background-mobile"} className={classes.background} ></div>
+              <Title display={mobile} handleIconClick={handleIconClick} />
+              <div
+                id={"background-mobile"}
+                className={classes.background}
+              ></div>
             </div>
-            <About />
-            <Contact />
+            <About body={userData.body} />
+            <Contact body={userData.body} />
           </div>
         </div>
       </div>

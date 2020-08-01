@@ -7,16 +7,15 @@ import useStyles from "../styles";
 
 export default function Title(props) {
   const classes = useStyles();
-
   return (
   	props.display
     ? <div className={classes.introductionContainer}>
-      <b className={classes.introduction}>Manohar</b>
+      <b className={classes.introduction}>{props?.profile?.firstName || ""}</b>
       <br />
-      <b className={classes.introduction}>Gunduboina</b>
+      <b className={classes.introduction}>{props?.profile?.lastName || ""}</b>
       <br />
       <b className={classes.introductionCredential}>
-        MERN Stack & React Native Developer
+      {props?.profile?.title || ""}
       </b>
       <div className={classes.introductionIcons}>
         <IconButton
