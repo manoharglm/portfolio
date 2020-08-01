@@ -18,8 +18,7 @@ import Contact from "./components/Contact";
 import Title from "./components/Title";
 import "./App.css";
 import axios from "axios";
-import Skeleton from 'react-loading-skeleton';
- 
+import Skeleton from "react-loading-skeleton";
 
 export default function App(props) {
   const { container } = props;
@@ -207,7 +206,11 @@ export default function App(props) {
           <Menu handleDrawerToggle={handleDrawerToggle} />
           <div>
             <div id={"indexPage"}>
-              <Title display={mobile} handleIconClick={handleIconClick} />
+              <Title
+                profile={userData.profile}
+                display={mobile}
+                handleIconClick={handleIconClick}
+              />
               <div
                 id={"background-mobile"}
                 className={classes.background}
