@@ -22,7 +22,7 @@ jobs:
             git config user.name "manoharglm"
       - add_ssh_keys:
           fingerprints:
-            - "bc:89:03:28:2f:c2:7d:b8:89:0b:65:f4:59:64:77:51"
+            - "b4:65:ca:53:47:07:8f:76:af:ee:56:b0:0c:da:a3:8f"
       - run:
           name: Deploy build
           command: yarn deploy
