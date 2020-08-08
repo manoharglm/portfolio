@@ -1,51 +1,25 @@
-version: 1
+version: 2.1
 jobs:
   build:
-    working_directory: ~/manoharglm.github.io
     docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      - restore_cache:
-          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn
-      - save_cache:
-          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
-          paths:
-            - /home/circleci/.yarn
-      - run:
-          name: Run Tests
-          command: yarn test
-  deploy:
+      - image: circleci/node:12.9.1-browsers
+  
     working_directory: ~/manoharglm.github.io
-    docker:
-      - image: circleci/node:10
-    steps:
+steps:
       - checkout
+      
       - restore_cache:
-          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn
+        keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      
+      - run: yarn
+   
       - save_cache:
-          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
-          paths:
-            - /home/circleci/.yarn
-      - run:
-          name: Run Tests
-          command: yarn test
-      - run:
-          name: Deploy
-          command: yarn deploy
-workflows:
-  version: 1
-  deploy:
-    jobs:
-      - deploy:
-          filters:
-            tags:
-              only: /^V.*/
-            branches:
-              ignore: /.*/
+        paths:
+          - node_modules
+          - ~/.yarn 
+          - ~/.cache
+        key: v1-dependencies-{{ checksum "package.json" }}
+    
+      - run: yarn deploy
