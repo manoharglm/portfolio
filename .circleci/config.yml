@@ -20,6 +20,9 @@ jobs:
           command: |
             git config user.email "manohargunduboina@gmail.com"
             git config user.name "manoharglm"
+      - add_ssh_keys:
+          fingerprints:
+            - "bc:89:03:28:2f:c2:7d:b8:89:0b:65:f4:59:64:77:51"
       - run:
           name: Deploy build
           command: yarn deploy
