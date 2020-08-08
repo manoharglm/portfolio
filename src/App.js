@@ -18,7 +18,6 @@ import Contact from "./components/Contact";
 import Title from "./components/Title";
 import "./App.css";
 import axios from "axios";
-import Skeleton from "react-loading-skeleton";
 
 export default function App(props) {
   const { container } = props;
@@ -29,7 +28,7 @@ export default function App(props) {
     window.matchMedia("(max-width: 767px)").matches
   );
   const [userData, setUserData] = React.useState([]);
-
+  const userDataUpdated = userData.length
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -47,7 +46,7 @@ export default function App(props) {
     saveUserData().then((res) => {
       setUserData(res.data);
     });
-  }, [userData?.length]);
+  }, [userDataUpdated]);
 
   const handleIconClick = (website) => {
     window.open(userData.links[website], "_blank");
