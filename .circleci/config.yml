@@ -16,5 +16,10 @@ jobs:
           paths:
             - ~/.cache/yarn
       - run:
+          name: Configure dependencies
+          command: |
+            git config user.email "manohargunduboina@gmail.com"
+            git config user.name "manoharglm"
+      - run:
           name: Deploy build
           command: yarn deploy
