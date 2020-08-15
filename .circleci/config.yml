@@ -27,10 +27,13 @@ jobs:
           name: Deploy build
           command: yarn deploy
       - run: mkdir -p workspace
-      - run: cp src/images/potrait.jpg workspace
+      - run: cp src/images/potrait.jpg workspace/artifacts
       
       - persist_to_workspace:
           root: workspace
+          paths:
+            - artifacts
+
 
   publish-github-release:
     working_directory: ~/manoharglm.github.io
@@ -42,7 +45,7 @@ jobs:
           name: "Publish Release on GitHub"
           command: |
             go get github.com/tcnksm/ghr
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V2.0.0 workspace
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V2.0.0 artifacts
       - run: echo | ls -a
 workflows:
   version: 2
