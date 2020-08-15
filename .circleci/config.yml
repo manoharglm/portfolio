@@ -5,7 +5,6 @@ executors:
     docker:
       - image: buildpack-deps:jessie
     working_directory: ~/manoharglm.github.io
-    docker:
 
 jobs:
   build:
