@@ -39,6 +39,11 @@ jobs:
           name: "Publish Release on GitHub"
           command: |
             go get github.com/tcnksm/ghr
+            echo ${GITHUB_TOKEN}
+            echo ${CIRCLE_PROJECT_USERNAME}
+            echo ${CIRCLE_PROJECT_REPONAME}
+            echo ${CIRCLE_SHA1}
+            echo ${$(my-binary --version)}
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V1.0.0 ./artifacts/
 workflows:
   version: 2
