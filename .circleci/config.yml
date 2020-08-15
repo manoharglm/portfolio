@@ -41,14 +41,21 @@ jobs:
           at: ./artifacts
           name: "Publish Release on GitHub"
           command: |
-            echo "working"
             go get github.com/tcnksm/ghr
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V2.0.0 ./artifacts/
+      - run: echo | ls -a
 workflows:
   version: 2
   Release:
     jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - DEVELOPMENT
       - publish-github-release:
+          requires:
+            - build
           filters:
             branches:
               only:
