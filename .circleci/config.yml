@@ -26,11 +26,11 @@ jobs:
       - run:
           name: Deploy build
           command: yarn deploy
-      - run: mkdir -p artifacts
-      - run: cp src/images/potrait.jpg artifacts
+      - run: mkdir -p workspace
+      - run: cp src/images/potrait.jpg workspace
       
       - persist_to_workspace:
-          root: artifacts
+          root: workspace
 
   publish-github-release:
     working_directory: ~/manoharglm.github.io
@@ -38,11 +38,11 @@ jobs:
       - image: circleci/golang:1.10.1
     steps:
       - attach_workspace:
-          at: ./artifacts
+          at: ./workspace
           name: "Publish Release on GitHub"
           command: |
             go get github.com/tcnksm/ghr
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V2.0.0 ./artifacts/
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V2.0.0 workspace
       - run: echo | ls -a
 workflows:
   version: 2
