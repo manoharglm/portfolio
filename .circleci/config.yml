@@ -1,15 +1,7 @@
-version: 2.1
-
-executors:
-  my-executor:
-    docker:
-      - image: buildpack-deps:jessie
-    working_directory: ~/manoharglm.github.io
-
+version: 1
 jobs:
   build:
     working_directory: ~/manoharglm.github.io
-    executor: my-executor
     docker:
       - image: circleci/node:10
     steps:
@@ -34,9 +26,6 @@ jobs:
       - run:
           name: Deploy build
           command: yarn deploy
-
-      - store_artifacts:
-          path: src/images/potrait.jpg
       - run: mkdir -p workspace
       - run: cp src/images/potrait.jpg workspace/artifacts
       
@@ -44,22 +33,20 @@ jobs:
           root: workspace
           paths:
             - artifacts
-
-publish-github-release:
+      - store_artifacts:
+          path: src/images/potrait.jpg
+  publish-github-release:
     working_directory: ~/manoharglm.github.io
     docker:
       - image: circleci/golang:1.10.1
-    executor: my-executor
     steps:
       - attach_workspace:
           at: /manoharglm.github.io/workspace
-
-      - run: ls -a
-      - run:
           name: "Publish Release on GitHub"
           command: |
+            ls -a
             go get github.com/tcnksm/ghr
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V1.0.0 workspace
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V1.0.0 ./artifacts/
 workflows:
   version: 2
   Release:
