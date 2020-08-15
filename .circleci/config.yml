@@ -31,8 +31,7 @@ jobs:
       
       - persist_to_workspace:
           root: workspace
-          paths:
-            - artifacts
+
       - store_artifacts:
           path: src/images/potrait.jpg
   publish-github-release:
@@ -46,19 +45,12 @@ jobs:
           command: |
             echo ls -a
             go get github.com/tcnksm/ghr
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V1.0.0 workspace/artifacts/
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V2.0.0 workspace
 workflows:
   version: 2
   Release:
     jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - DEVELOPMENT
       - publish-github-release:
-          requires:
-            - build
           filters:
             branches:
               only:
