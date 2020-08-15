@@ -9,6 +9,7 @@ executors:
 jobs:
   build:
     working_directory: ~/manoharglm.github.io
+    executor: my-executor
     docker:
       - image: circleci/node:10
     steps:
@@ -36,8 +37,6 @@ jobs:
 
       - store_artifacts:
           path: src/images/potrait.jpg
-    executor: my-executor
-    steps:
       - run: mkdir -p workspace
       - run: cp src/images/potrait.jpg workspace/artifacts
       
@@ -56,7 +55,6 @@ publish-github-release:
           at: /manoharglm.github.io/workspace
 
       - run: ls -a
-    steps:
       - run:
           name: "Publish Release on GitHub"
           command: |
