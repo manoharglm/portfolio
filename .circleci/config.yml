@@ -41,7 +41,7 @@ jobs:
       - image: circleci/golang:1.10.1
     steps:
       - attach_workspace:
-          at: /manoharglm.github.io/workspace
+          at: ./workspace
           name: "Publish Release on GitHub"
           command: |
             ls -a
