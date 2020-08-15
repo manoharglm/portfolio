@@ -29,16 +29,26 @@ jobs:
 
       - store_artifacts:
           path: src/images/potrait.jpg
+          
+      - run: mkdir -p workspace
+      - run: cp src/images/potrait.jpg workspace
+      
+      - persist_to_workspace:
+          root: workspace
+
   publish-github-release:
     working_directory: ~/manoharglm.github.io
     docker:
       - image: circleci/golang:1.10.1
+      - attach_workspace:
+          at: /tmp/workspace
     steps:
       - run:
           name: "Publish Release on GitHub"
           command: |
             go get github.com/tcnksm/ghr
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V1.0.0 src/images/
+            ls -a
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V1.0.0 tmp/workspace
 workflows:
   version: 2
   Release:
