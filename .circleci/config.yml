@@ -43,8 +43,7 @@ jobs:
       - attach_workspace:
           at: ./workspace
           name: "Publish Release on GitHub"
-      - run: echo | ls -a workspace
-      - run: go get github.com/tcnksm/ghr && ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V2.0.0 workspace/artifacts
+          command: go get github.com/tcnksm/ghr && ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V2.0.0 workspace/artifacts
 workflows:
   version: 2
   Release:
