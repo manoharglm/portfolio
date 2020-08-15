@@ -44,9 +44,9 @@ jobs:
           at: ./workspace
           name: "Publish Release on GitHub"
           command: |
-            ls -a
+            echo ls -a
             go get github.com/tcnksm/ghr
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V1.0.0 ./artifacts/
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} V1.0.0 workspace/artifacts/
 workflows:
   version: 2
   Release:
