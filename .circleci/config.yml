@@ -45,7 +45,7 @@ jobs:
           name: "Publish Release on GitHub"
       - run:
           name: "Release and Upload artifacts"
-          command: go get github.com/tcnksm/ghr && ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -body="$(cat ./release.md)" V2.0.0 workspace/artifacts
+          command: go get github.com/tcnksm/ghr && ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -body="$(cat ../release.md)" V2.0.0 workspace/artifacts && ls -a
 
 workflows:
   version: 2
