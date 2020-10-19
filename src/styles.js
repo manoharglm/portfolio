@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "./images/manohar.jpg";
+import Avatar from "./images/greetings.gif";
 
 const drawerWidth = "30%";
 
@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({
     background: {
       backgroundImage: `url(${Avatar})`,
       background: "white",
-      backgroundPosition: "top center",
-      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundSize: "contain",
       backgroundRepeat: "no-repeat",
       height: "100vh",
       overflowX: "hidden",
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: 16,
     },
     button: {
-      color: "#494c4e",
+      color: "#000000",
       fontFamily: ["Libre Baskerville", "Roboto", "monaco", "sans-serif"].join(
         ","
       ),
@@ -44,14 +44,14 @@ const useStyles = makeStyles((theme) => ({
       margin: 15
     },
     introduction: {
-      color: "#494c4e",
+      color: "#000000",
       fontFamily: ["Libre Baskerville", "Roboto", "monaco", "sans-serif"].join(
         ","
       ),
       fontSize: "2em",
     },
     introductionCredential: {
-      color: "#494c4e",
+      color: "#000000",
       fontFamily: ["Libre Baskerville", "Roboto", "monaco", "sans-serif"].join(
         ","
       ),
@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
       textAlign: "center",
     },
     aboutPageBody: {
-      color: "#494c4e",
+      color: "#000000",
       fontFamily: ["Libre Baskerville", "Roboto", "monaco", "sans-serif"].join(
         ","
       ),
@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
       color: "inherit",
     },
     listItemText: {
-      color: "#494c4e",
+      color: "#000000",
       fontFamily: ["Libre Baskerville", "Roboto", "monaco", "sans-serif"].join(
         ","
       ),
