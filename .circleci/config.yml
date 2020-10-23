@@ -26,6 +26,8 @@ jobs:
       - run:
           name: Deploy build
           command: yarn deploy
+      - store_artifacts:
+          path: /manoharglm.github.io/src/images
 
   publish-github-release:
     working_directory: ~/manoharglm.github.io
